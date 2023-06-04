@@ -42,18 +42,23 @@ class lineEditDemo(QWidget):
         row = PList1.currentRow()
         item = PList1.item(row)
         values = item.text().split(',')
-        print(values[1])
+        License=values[1][1::]
+        print(License)
         # Use with statement to automatically close connection and cursor
         with psycopg2.connect(host="127.0.0.1", port="54321", user="system", password = "123456", database ="test") as gConn:
             with gConn.cursor() as cur:
-            # Use parameterized query to insert data
-                cur.execute("DELETE FROM PORT WHERE(LICENSE =%s);", (values[1],))
-                # Commit the transaction
-                gConn.commit()
+                try:
+                    # Use parameterized query to delete data
+                    cur.execute("DELETE FROM PORT WHERE(LICENSE =%s);", (License,))
+                    # Check the result
+                    print("Deleted rows:", cur.rowcount)
+                    print("Status message:", cur.statusmessage)
+                except (Exception, psycopg2.DatabaseError) as error:
+                    print(error)
+        # Commit the transaction
+        gConn.commit()
         #Update the list widget to show the inserted data
         self.ButtonSearchClicked(PList1, PEdit1)
-        cur.close()
-        gConn.close()
 
 
     def ButtonQuitClicked(self,PList1,PEdit1):
