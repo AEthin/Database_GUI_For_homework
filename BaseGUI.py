@@ -49,17 +49,13 @@ class lineEditDemo(QWidget):
             with gConn.cursor() as cur:
                 try:
                     # Use parameterized query to delete data
-                    cur.execute("DELETE FROM PORT WHERE(LICENSE =%s);", (License,))
-                    # Check the result
-                    print("Deleted rows:", cur.rowcount)
-                    print("Status message:", cur.statusmessage)
+                    cur.execute("DELETE FROM PORT WHERE(LICENSE =%s);", (License,))            
                 except (Exception, psycopg2.DatabaseError) as error:
                     print(error)
         # Commit the transaction
         gConn.commit()
         #Update the list widget to show the inserted data
         self.ButtonSearchClicked(PList1, PEdit1)
-
 
     def ButtonQuitClicked(self,PList1,PEdit1):
 
