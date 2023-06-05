@@ -6,9 +6,23 @@
 
 存储的数据：车主姓名，车牌，车辆大小，车身颜色
 
+## PORT表的建表语句
+
+```sql
+//登记车辆信息，不限于车牌、车辆大小，可以查询和删除
+CREATE TABLE PORT
+(
+	NAME VARCHAR(10) NOT NULL,
+	lICENSE CHAR(7),
+	SIZE INT,
+	COLOR CHAR(1),
+	PRIMARY KEY (LICENSE)
+);
+```
+
 ## 完整代码
 
-```
+```python
 # -*- coding: utf-8 -*-
 from PyQt5.QtWidgets import QListWidget,QApplication,QLineEdit,QWidget,QFormLayout,QPushButton
 import sys
