@@ -218,7 +218,7 @@ if __name__ == '__main__':
                     print(error)
         # 提交事务
         gConn.commit()
-        #更新PORT
+        #更新PORT表
         self.ButtonSearchClicked(PList1, PEdit1)
 ```
 

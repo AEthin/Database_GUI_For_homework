@@ -56,6 +56,8 @@ class lineEditDemo(QWidget):
         gConn.commit()
         #Update the list widget to show the inserted data
         self.ButtonSearchClicked(PList1, PEdit1)
+        cur.close()
+        gConn.close()
 
     def ButtonQuitClicked(self,PList1,PEdit1):
 
